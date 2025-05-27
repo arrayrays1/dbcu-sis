@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Student Grades')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar(${user})"></nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: student-sidebar"></div>
+            
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="padding-left: 50px;">
+                    <h1 class="h2" style="color: #024791;"><i class="bi bi-award me-2"></i>My Grades</h1>
+                </div>
+                
+                <div class="row mb-3" style="padding-left: 50px;">
+                    <div class="col-md-6">
+                        <form th:action="@{/student/grades}" method="get" class="row g-3">
+                            <div class="col-md-4">
+                                <label for="semester" class="form-label">Semester</label>
+                                <select class="form-select" id="semester" name="semester">
+                                    <option value="1" th:selected="${semester == '1'}">1st Semester</option>
+                                    <option value="2" th:selected="${semester == '2'}">2nd Semester</option>
+                                    <option value="Summer" th:selected="${semester == 'Summer'}">Summer</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="academicYear" class="form-label">Academic Year</label>
+                                <input type="text" class="form-control" id="academicYear" name="academicYear" th:value="${academicYear}">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="table-responsive" style="padding-left: 50px; padding-right: 50px;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Name</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grade : ${grades}">
+                                <td th:text="${grade.subjectCode}">CS101</td>
+                                <td th:text="${grade.subjectName}">Introduction to Programming</td>
+                                <td th:text="${grade.value}">85.5</td>
+                            </tr>
+                            <tr th:if="${grades.empty}">
+                                <td colspan="3" class="text-center">No grades found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+        </div>
+    </div>
+    
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>

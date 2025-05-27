@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBCU Student Dashboard</title>
+    <link th:href="@{/css/stud-dash.css}" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Header with university info and user details */
+        .header {
+            background-color: #0047ab;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .university-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .university-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .university-name {
+            color: #ffc107;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation menu */
+        .nav-menu {
+            background-color: #00308F;
+            padding: 0.8rem 0;
+            padding-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-items {
+            display: flex;
+            list-style: none;
+            gap: 4rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffc107;
+        }
+
+        .nav-link.active {
+            color: #ffc107;
+        }
+
+        /* Icons */
+        .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Main content area */
+        .main-content {
+            padding: 2rem;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-items {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="university-info">
+            <img src="/lovable-uploads/bc13bf77-60f0-4094-9202-221d9124bf2a.png" alt="DBCU Logo" class="university-logo">
+            <div class="university-name">
+                DELMARVA BEACH CITY<br>
+                UNIVERSITY (DBCU)
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-name">Ariane Jasmine T. Lelis</span>
+            <button class="logout-btn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Log out
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-menu">
+        <ul class="nav-items">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                    Enrollment
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="9" y1="15" x2="15" y2="15"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                    </svg>
+                    Grades
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="welcome-message">
+            <h1>Welcome to DBCU Student Portal</h1>
+            <p>Select a navigation item above to access your student information.</p>
+        </div>
+    </main>
+
+    <script>
+        // Add click functionality to navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Update main content based on selection
+                const section = this.textContent.trim();
+                const mainContent = document.querySelector('.main-content');
+                mainContent.innerHTML = `
+                    <div class="welcome-message">
+                        <h1>${section} Section</h1>
+                        <p>This is the ${section.toLowerCase()} section of the DBCU Student Portal.</p>
+                    </div>
+                `;
+            });
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to log out?')) {
+                alert('Logging out...');
+                // In a real application, this would redirect to the login page
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DBCU Portal</title>
+    <meta name="description" content="DBCU Student Portal - Access your courses, grades, and university resources" />
+    <meta name="author" content="Delmarva Beach City University" />
+
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/img/logo.png}">
+    
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </head>
+  
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img th:src="@{/img/logo.png}" alt="Delmarva Beach City University Logo" />
+        <div class="navbar-title">
+          <h1>DELMARVA BEACH CITY</h1>
+          <h2>UNIVERSITY (DBCU)</h2>
+        </div>
+      </div>
+      
+      <div class="navbar-links">
+        <a href="#"><b>ABOUT</b></a>
+        <a href="#"><b>PROGRAMS</b></a>
+        <a href="#"><b>ADMISSIONS</b></a>
+        <a href="#"><b>CAMPUS LIFE</b></a>
+        <a href="#"><b>RESOURCES</b></a>
+      </div>
+    </nav>
+    
+    <main>
+      <div class="login-form">
+        <h2>Login Portal</h2>
+        
+        <div th:if="${error}" class="error" id="error-message" style="color: red;">
+          Invalid Email or Password
+        </div>
+        <div th:unless="${error}" class="info-text" id="infos-text">
+          To access the student information system, please enter your DBCU email and password
+        </div>
+        
+        <form th:action="@{/auth/login}" method="post">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
+          </div>
+          <div class="form-text">Use <b>@admindbcu.com</b>,<b>@facultydbcu.com</b>, or <b>@studentdbcu.com</b> domain</div>
+          
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="login-button">Login</button>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    
+    <footer>
+      <p>© 2025 Delmarva Beach City University • All rights reserved</p>
+    </footer>
+    
+    <script>
+    // Auto-hide error message after 3 seconds
+    document.addEventListener("DOMContentLoaded", function () {
+    const errorMessage = document.getElementById("error-message");
+    const infosText = document.getElementById("infos-text");
+
+    if (errorMessage) {
+      setTimeout(() => {
+        errorMessage.style.transition = "opacity 0.5s ease-out";
+        errorMessage.style.opacity = "0";
+
+      setTimeout(() => {
+        errorMessage.style.display = "none";
+
+    // Now fade in the info text
+      if (infosText) {
+        infosText.style.display = "block";
+        infosText.style.opacity = "0";
+        infosText.style.transition = "opacity 0.5s ease-in";
+        setTimeout(() => {
+          infosText.style.opacity = "1";
+        }, 50); // slight delay to trigger fade-in
+      }
+
+      }, 500); // after fade out
+      }, 3000); // wait 3s before starting fade out
+    }
+    });
+    </script>
+  </body>
+</html>

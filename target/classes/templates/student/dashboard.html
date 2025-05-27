@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Student Dashboard')">
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar(${user})"></nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div th:replace="fragments/layout :: student-sidebar"></div>
+            
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" 
+                style="padding-left: 50px;">
+                    <h1 class="h2" style="color: #024791;"><i class="bi bi-speedometer2 me-2"></i>Student Dashboard</h1>
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-6" style="padding-left: 50px;">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Quick Links</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a th:href="@{/student/grades}" class="text-decoration-none">
+                                            <i class="bi bi-award me-2"></i>View Grades
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a th:href="@{/student/enrollment}" class="text-decoration-none">
+                                            <i class="bi bi-clipboard-check me-2"></i>Enrollment
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a th:href="@{/student/schedule}" class="text-decoration-none">
+                                            <i class="bi bi-calendar-week me-2"></i>View Schedule
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" style="padding-right: 30px;">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Student Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Name:</strong> <span th:text="${user.name}">John Doe</span></p>
+                                <p><strong>Email:</strong> <span th:text="${user.email}">john@student.com</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    
+    <div th:replace="fragments/layout :: scripts"></div>
+    
+</body>
+</html>
